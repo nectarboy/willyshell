@@ -16,7 +16,13 @@
     </style>
 </head>
 <body>
-    <canvas id='wt_canv' width=128 height=112></canvas>
-    <script src='src/terminal.js'></script>
+    <canvas id='canv' width=128 height=112></canvas>
+    <script type='module'>
+        // imports
+        import Terminal from './src/terminal.js';
+
+        var terminal = new Terminal(document.getElementById('canv'));
+        terminal.app_loop();
+    </script>
 </body>
 </html>

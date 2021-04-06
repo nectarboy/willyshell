@@ -11,18 +11,36 @@
 
         canvas {
             width: 512px;
-            border: 1px solid grey;
+
+            border: 1px solid gray;
+            /*image-rendering: pixelated;*/
+        }
+
+        button {
+            width: 150px;
+            height: 75px;
         }
     </style>
 </head>
 <body>
     <canvas id='canv' width=128 height=112></canvas>
+    <!-- pause / play -->
+    <div>
+        <button id='play'>play</button>
+        <button id='pause'>pause</button>
+    </div>
+
     <script type='module'>
         // imports
         import Shell from './src/shell.js';
 
+        // shell
         var shell = new Shell(document.getElementById('canv'));
-        shell.app_loop();
+        shell.start_app();
+
+        // buttons
+        document.getElementById('play').onclick = () => shell.start_app();
+        document.getElementById('pause').onclick = () => shell.stop_app();
     </script>
 </body>
 </html>

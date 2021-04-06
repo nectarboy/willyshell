@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>willyTerminal</title>
+    <title>willyshell</title>
     <meta charset='utf-8'>
     <style>
         html, body {
@@ -19,10 +19,10 @@
     <canvas id='canv' width=128 height=112></canvas>
     <script type='module'>
         // imports
-        import Terminal from './src/terminal.js';
+        import Shell from './src/shell.js';
 
-        var terminal = new Terminal(document.getElementById('canv'));
-        terminal.app_loop();
+        var shell = new Shell(document.getElementById('canv'));
+        shell.app_loop();
     </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 function Coolmaze(t) {
-    const shell = this;
+    const maze = this;
 
     // properties
     this.name = 'coolmaze';

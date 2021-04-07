@@ -59,6 +59,14 @@ function Terminal(t) {
                 // ...
                 break;
             }
+            case 'help': {
+                t.txt_drawString('\nenter \'list\' for programs');
+                checkScroll();
+                t.txt_drawString('\nenter \'cmd\' for commands');
+                checkScroll();
+
+                break;
+            }
             case 'go': {
                 var arr = input.split(' ');
                 arr.shift();
@@ -82,6 +90,24 @@ function Terminal(t) {
                     checkScroll();
                 }
 
+                break;
+            }
+            case 'cmd': {
+                // all commands
+                [
+                    'help',
+                    'go [program]',
+                    'list',
+                    'cmd',
+                    'color [hex color]',
+                    'red',
+                    'echo [string]',
+                    'cake'
+                ]
+                .forEach(cmd => {
+                    t.txt_drawString('\n' + cmd);
+                    checkScroll();
+                });
                 break;
             }
             case 'color': {

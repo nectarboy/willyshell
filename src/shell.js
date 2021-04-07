@@ -49,7 +49,7 @@ function Shell(canv) {
     };
 
     // very very slow buffer scrolling method
-    this.scrollBufferBy = function(x,y,settings = {}) {
+    this.scrollBufferBy = function(x,y) {
         var tmpCanv = document.createElement('canvas');
         var tmpCtx = tmpCanv.getContext('2d');
 
@@ -61,9 +61,6 @@ function Shell(canv) {
         var newBuff = tmpCtx.getImageData(0,0,this.canv_width,this.canv_height);
         for (var i = 0; i < buffer.data.length; i++)
             buffer.data[i] = newBuff.data[i];
-
-        //if (!settings.dontRender)
-            this.renderBuffer();
     };
 
     this.clearBuffer = function() {
@@ -105,6 +102,13 @@ function Shell(canv) {
             this.renderBuffer();
     };
 
+    var program_class = null;
+    var curr_program = null;
+    this.load_program = function(program) {
+        program_class = program;
+        this.init();
+    }
+
     this.init = function() {
         this.txt_x = 0;
         this.txt_y = 0;
@@ -113,6 +117,7 @@ function Shell(canv) {
         this.setColor(1, '00ff00');
 
         this.clearBuffer();
+        curr_program = new program_class(this);
         curr_program.init();
 
         this.renderBuffer();
@@ -185,19 +190,15 @@ function Shell(canv) {
     function keyup(e) {
         var key = e.key.toLowerCase();
         // restart terminal
-        if (key === 'escape')
+        if (key === 'escape') {
+            shell.load_program(Terminal);
             shell.init();
+        }
 
         curr_program.keyup(key);
     }
 
     // app program loop
-    var curr_program = null;
-    this.load_program = function(program) {
-        curr_program = new program(this);
-        this.init();
-    }
-
     var paused = true;
 
     var curr_timeout = null;
@@ -227,6 +228,6 @@ function Shell(canv) {
     // initialization - load the firmware
     this.load_program(Terminal);
 
-};
+}
 
 export default Shell;

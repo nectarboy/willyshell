@@ -1,5 +1,10 @@
 function Coolmaze(t) {
-    var shell = this;
+    const shell = this;
+
+    // properties
+    this.name = 'coolmaze';
+    this.blurb = 'a cool maze';
+    this.author = 'nectarboy';
 
     // INIT //
     this.init = function() {
@@ -14,6 +19,9 @@ function Coolmaze(t) {
 
         t.txt_drawChar(tiles[num]);
     };
-};
+
+    // KEY EVENTS //
+    this.keydown = this.keyup = function () {};
+}
 
 export default Coolmaze;
